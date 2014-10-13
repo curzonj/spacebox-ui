@@ -12,14 +12,13 @@
     "q": "~1",
     "q-io": "~1",
     "jquery": "latest",
-    "angularjs": "latest",
-    "angular-route": "latest",
     "underscore": "latest"
   },
   "browserify": {
     "transform": [ "browserify-shim" ]
   },
   "browserify-shim": {
+    "angular": "global:angular",
     "src/vendor/threejs/Detector.js": "Detector",
     "src/vendor/threejs/stats.min.js": "Stats",
     "src/vendor/threejs/OrbitControls.js": {

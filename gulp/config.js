@@ -6,10 +6,11 @@ module.exports = {
     server: {
       // We're serving the src folder as well
       // for sass sourcemap linking
-      baseDir: [dest, src]
+      baseDir: ['./htdocs', dest, src]
     },
     files: [
       dest + "/**",
+      './htdocs/**',
       // Exclude Map files
       "!" + dest + "/**.map"
     ]
@@ -25,7 +26,7 @@ module.exports = {
   markup: {
     'node_modules/*/images/**': dest,
     'node_modules/threex.spaceships/models/**': dest+'/threex.spaceships/models/',
-    "src/htdocs/**": dest
+    "htdocs/**": dest
   },
   browserify: {
     // Enable source maps

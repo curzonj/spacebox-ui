@@ -3,6 +3,8 @@
 var THREE = require('three'),
     THREEx = require('threex.planets');
 
+THREEx.Planets.baseURL	= '/threex.planets/'
+
 var scene,
     frustrumDistance = 10000,
     handlers = [];
