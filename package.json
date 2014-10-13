@@ -1,0 +1,30 @@
+{
+  "name": "spacebox-ui",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "spacebox-common": "curzonj/spacebox-nodejs-common",
+    "tween": "sole/tween.js",
+    "three": "latest",
+    "browserify": "latest",
+    "browser-sync": "latest",
+    "require-dir": "latest",
+    "q": "~1",
+    "q-io": "~1",
+    "watchify": "latest",
+    "gulp": "latest",
+    "jquery": "latest",
+    "angularjs": "latest",
+    "angular-route": "latest",
+    "underscore": "latest"
+  },
+  "napa": {
+    "threex.keyboardstate": "jeromeetienne/threex.keyboardstate",
+    "threex.spaceships": "curzonj/threex.spaceships",
+    "threex.planets": "curzonj/threex.planets",
+    "threex.laser": "curzonj/threex.laser"
+  },
+  "devDependencies": {
+    "napa": "latest"
+  }
+}
