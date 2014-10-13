@@ -1,5 +1,5 @@
-define([
-    './wobble',
-    './shooting',
-    './html_overlay'
-], function() { });
+'use strict';
+
+require('./wobble');
+require('./shooting');
+require('./html_overlay');

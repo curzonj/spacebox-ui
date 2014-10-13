@@ -1,13 +1,18 @@
 'use strict';
 
-var Detector = require('./vendor/threejs/Detector');
+var $ = require('jquery');
 
-var builder = require('./builder'),
-    container = require('./container');
+$(function() {
+    var Detector = require('./vendor/threejs/Detector');
 
-if (!Detector.webgl) {
-    Detector.addGetWebGLMessage();
-    container.innerHTML = "";
-} else {
-    builder.start();
-}
+    var builder = require('./builder'),
+        container = require('./container');
+
+    if (!Detector.webgl) {
+        Detector.addGetWebGLMessage();
+        container.getViewport().innerHTML = "";
+    } else {
+        builder.start();
+    }
+    console.log('loaded');
+});

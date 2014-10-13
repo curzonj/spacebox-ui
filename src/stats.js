@@ -1,10 +1,11 @@
-define(['stats', './container'], function(Stats, container) {
-    'use strict';
+'use strict';
 
-    var stats = new Stats();
-    stats.domElement.style.position = 'absolute';
-    stats.domElement.style.top = '0px';
-    container.getViewport().appendChild( stats.domElement );
+var Stats = require('./vendor/threejs/stats.min'),
+    container = require('./container');
 
-    return stats;
-});
+var stats = new Stats();
+stats.domElement.style.position = 'absolute';
+stats.domElement.style.top = '0px';
+container.getViewport().appendChild( stats.domElement );
+
+module.exports = stats;

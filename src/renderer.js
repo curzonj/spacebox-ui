@@ -1,20 +1,21 @@
-define(['three', 'jquery', './container'], function(THREE, $, container) {
+'use strict';
 
-    'use strict';
+var THREE = require('./vendor/three-shim'),
+    $ = require('jquery'),
+    container = require('./container');
 
-    function setSizes() {
-        renderer.setSize(container.viewportWidth(), window.innerHeight);
-        var sidebar = container.sidebarWidth()+'px';
-        $('#sidebar').css('width', sidebar);
-        $(container.getViewport()).css('margin-left', sidebar);
-    }
+function setSizes() {
+    renderer.setSize(container.viewportWidth(), window.innerHeight);
+    var sidebar = container.sidebarWidth()+'px';
+    $('#sidebar').css('width', sidebar);
+    $(container.getViewport()).css('margin-left', sidebar);
+}
 
-    var renderer = new THREE.WebGLRenderer();
+var renderer = new THREE.WebGLRenderer();
 
-    setSizes();
-    container.getViewport().appendChild(renderer.domElement);
+setSizes();
+container.getViewport().appendChild(renderer.domElement);
 
-    window.addEventListener('resize', setSizes, false);
+window.addEventListener('resize', setSizes, false);
 
-    return renderer;
-});
+module.exports = renderer;
