@@ -1,6 +1,7 @@
-var THREE = require('three')
+var THREE = require('three'),
+    list = require('./list')
 
-module.exports = function(scale, cb) {
+list.add('cube', function(scale, cb) {
     var sides = scale * 0.5;
 
     var geometry = new THREE.BoxGeometry(sides, sides, sides);
@@ -28,4 +29,4 @@ module.exports = function(scale, cb) {
     mesh = new THREE.Mesh(geometry, faceMaterial);
 
     cb(mesh);
-};
+})

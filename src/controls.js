@@ -1,7 +1,7 @@
 'use strict';
 
 var THREE = require('three'),
-    OrbitControls = require('./vendor/threejs/OrbitControls'),
+    OrbitControls = require('./vendor/threejs/controls/OrbitControls'),
     camera = require('./camera'),
     container = require('./container');
 

@@ -8,7 +8,6 @@
     "threex.planets": "curzonj/threex.planets",
     "threex.laser": "curzonj/threex.laser",
     "tween": "sole/tween.js",
-    "three": "latest",
     "q": "~1",
     "q-io": "~1",
     "jquery": "latest",
@@ -19,11 +18,11 @@
   },
   "browserify-shim": {
     "angular": "global:angular",
+    "three": "global:THREE",
     "src/vendor/threejs/Detector.js": "Detector",
-    "src/vendor/threejs/stats.min.js": "Stats",
-    "src/vendor/threejs/OrbitControls.js": {
-      "exports": "THREE.OrbitControls",
-      "depends": [ "three:THREE" ]
+    "src/vendor/threejs/libs/stats.min.js": "Stats",
+    "src/vendor/threejs/controls/OrbitControls.js": {
+      "exports": "THREE.OrbitControls"
     }
   },
   "napa": {

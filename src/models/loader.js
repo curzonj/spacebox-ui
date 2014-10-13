@@ -1,10 +1,10 @@
 var sceneCtl = require('../sceneCtl'),
-    worldState = require('../world_state')
+    worldState = require('../world_state'),
+    models = require('./list');
+
+require('./load_all');
 
 var self = {
-    load: function(name, size, cb) {
-        require('./'+name)(size, cb)
-    },
     loadModel: function(key, cb) {
         var spo = worldState.get(key);
         var model_name = spo.values.model_name || "cube";
@@ -13,7 +13,7 @@ var self = {
             console.log(spo);
         }
 
-        self.load(model_name, model_scale, function(object3d) {
+        models.load(model_name, model_scale, function(object3d) {
             // Reload it because it may be stale
             spo = worldState.get(key);
 

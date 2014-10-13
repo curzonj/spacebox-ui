@@ -9,6 +9,7 @@ var $ = require('jquery'),
     sceneCtl = require('./sceneCtl'),
     worldState = require('./world_state'),
     keyPressed = require('./keypressed'),
+    websockets = require('./websockets'),
     renderer = require('./renderer');
 
 require('./world_tickers/load_all');
@@ -33,52 +34,19 @@ Builder.prototype = {
             console.log("paused = " + this.paused);
         }.bind(this));
     },
-    websocketUrl: function() {
-        var loc = window.location,
-            new_uri;
-        if (loc.protocol === "https:") {
-            new_uri = "wss:";
-        } else {
-            new_uri = "ws:";
-        }
-        new_uri += "//" + loc.host + "/";
-
-        return 'ws://localhost:5100/';
-    },
     openConnection: function() {
-        var self = this;
-        var connection = new WebSocket(self.websocketUrl());
+        var connection = websockets.get('3dsim');
 
-        connection.onopen = function() {
+        connection.onOpen(function() {
             //connection.send('Ping'); // Send the message 'Ping' to the server
             console.log("reseting the world");
             // TODO as soon as this opens we start receiving
             // messages, is there a race condition?
             sceneCtl.create();
             worldState.reset();
-        };
+        });
 
-        connection.onclose = function() {
-            if (!self.paused) {
-                console.log("waiting 1sec to reconnect");
-            }
-            setTimeout(function() {
-                if (!self.paused) {
-                    console.log("reconnecting");
-                }
-                self.openConnection();
-            }, 1000);
-        };
-
-        // Log errors
-        connection.onerror = function(error) {
-            if (!self.paused) {
-                console.log('WebSocket Error');
-                console.log(error);
-            }
-        };
-
-        connection.onmessage = this.onMessage.bind(this);
+        connection.on('message', this.onMessage.bind(this));
     },
     onMessage: function(e) {
         var msg = JSON.parse(e.data);

@@ -1,6 +1,6 @@
 'use strict';
 
-var Stats = require('./vendor/threejs/stats.min'),
+var Stats = require('./vendor/threejs/libs/stats.min'),
     container = require('./container');
 
 var stats = new Stats();
