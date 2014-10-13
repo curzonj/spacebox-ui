@@ -1,6 +1,6 @@
 'use strict';
 
-var THREE = require('./vendor/three-shim'),
+var THREE = require('three'),
     THREEx = require('threex.planets');
 
 var scene,

@@ -1,6 +1,6 @@
 'use strict';
 
-var THREE = require('../vendor/three-shim'),
+var THREE = require('three'),
     TWEEN = require('tween.js'),
     sceneCtl = require('../sceneCtl'),
     worldState = require('../world_state');

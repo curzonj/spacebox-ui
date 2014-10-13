@@ -1,10 +1,11 @@
 'use strict';
 
-var THREE = require('./vendor/three-shim'),
+var THREE = require('three'),
+    OrbitControls = require('./vendor/threejs/OrbitControls'),
     camera = require('./camera'),
     container = require('./container');
 
-var controls = new THREE.OrbitControls(camera, container.getViewport());
+var controls = new OrbitControls(camera, container.getViewport());
 
 controls.minDistance = 0.25;
 controls.maxDistance = camera.maxDistance;

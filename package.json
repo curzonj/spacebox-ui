@@ -20,7 +20,12 @@
     "transform": [ "browserify-shim" ]
   },
   "browserify-shim": {
-    "src/vendor/threejs/Detector.js": "Detector"
+    "src/vendor/threejs/Detector.js": "Detector",
+    "src/vendor/threejs/stats.min.js": "Stats",
+    "src/vendor/threejs/OrbitControls.js": {
+      "exports": "THREE.OrbitControls",
+      "depends": [ "three:THREE" ]
+    }
   },
   "napa": {
     "threex.keyboardstate": "jeromeetienne/threex.keyboardstate"
@@ -39,6 +44,7 @@
     "browserify": "~5.10.1",
     "browserify-shim": "~3.8.0",
     "vinyl-source-stream": "~0.1.1",
+    "event-stream": "latest",
     "watchify": "~1.0.2"
   },
   "jshintConfig": {

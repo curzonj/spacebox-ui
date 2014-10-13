@@ -23,8 +23,9 @@ module.exports = {
     dest: dest + "/images"
   },
   markup: {
-    src: src + "/htdocs/**",
-    dest: dest
+    'node_modules/*/images/**': dest,
+    'node_modules/threex.spaceships/models/**': dest+'/threex.spaceships/models/',
+    "src/htdocs/**": dest
   },
   browserify: {
     // Enable source maps

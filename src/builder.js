@@ -1,7 +1,7 @@
 'use strict';
 
 var $ = require('jquery'),
-    THREE = require('./vendor/three-shim'),
+    THREE = require('three'),
     TWEEN = require('tween.js'),
     stats = require('./stats'),
     camera = require('./camera'),
@@ -43,7 +43,7 @@ Builder.prototype = {
         }
         new_uri += "//" + loc.host + "/";
 
-        return new_uri;
+        return 'ws://localhost:5100/';
     },
     openConnection: function() {
         var self = this;

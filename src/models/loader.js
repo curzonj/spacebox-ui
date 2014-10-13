@@ -1,5 +1,5 @@
 var sceneCtl = require('../sceneCtl'),
-    worldState = require('../word_state')
+    worldState = require('../world_state')
 
 var self = {
     load: function(name, size, cb) {
