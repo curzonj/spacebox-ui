@@ -15,7 +15,7 @@ var self = {
         }
         new_uri += "//" + loc.host + "/";
 
-        return 'ws://localhost:5100/';
+        return 'ws://localhost:5100/arena';
     },
     get: function(service) {
         if (handlers[service] === undefined) {
