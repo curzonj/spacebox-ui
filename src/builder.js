@@ -35,7 +35,7 @@ Builder.prototype = {
         }.bind(this));
     },
     openConnection: function() {
-        var connection = websockets.get('3dsim');
+        var connection = websockets.get('3dsim', '/arena');
 
         connection.onOpen(function() {
             //connection.send('Ping'); // Send the message 'Ping' to the server

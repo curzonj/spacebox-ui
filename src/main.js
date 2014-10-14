@@ -1,8 +1,16 @@
 'use strict';
 
-var $ = require('jquery');
+var $ = require('jquery'),
+    C = require('spacebox-common')
+
+C.setEnvHash({
+    SPODB_URL: process.env.SPODB_URL
+})
 
 require('./asset_urls')
+
+global.Q = require('q')
+global.Qhttp = require('q-io/http')
 
 $(function() {
     var Detector = require('./vendor/threejs/Detector');

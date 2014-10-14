@@ -8,6 +8,10 @@ var worldState = require('../world_state'),
     camera = require('../camera'),
     container = require('../container')
 
+var overlay = document.createElement("div");
+overlay.setAttribute("class", "overlay");
+container.getViewport().appendChild(overlay);
+
 // account never changes but this still triggers when each
 // spaceship is loaded
 // TODO remove it on tombstone
@@ -28,7 +32,7 @@ worldState.registerMutator(['account'], function(key, values) {
         elem = document.createElement("div");
         elem.setAttribute("id", "tracking-" + key);
         elem.setAttribute("class", "tracking-overlay");
-        container.getViewport().appendChild(elem);
+        overlay.appendChild(elem);
     }
 
     elem = $('#tracking-' + key);
@@ -59,6 +63,9 @@ $(renderer).bind('renderComplete', function() {
             var percY = (-v.y + 1) / 2;
             var left = percX * renderer.domElement.offsetWidth;
             var top = percY * renderer.domElement.offsetHeight;
+/*            console.log(percX, percY);
+            console.log(renderer.domElement.offsetWidth, renderer.domElement.offsetHeight);
+            console.log(left, top); */
 
             // ideally we'd find the corner of the object
             // in the camera. for now just shift it up and left

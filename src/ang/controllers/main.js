@@ -17,8 +17,6 @@ require('../app').controller('mainController', function($scope) {
         }
 
         opts.command = name;
-        console.log(opts);
-
         ws.send(JSON.stringify(opts));
     }
 
