@@ -1,18 +1,15 @@
 'use strict';
 
 var C = require('spacebox-common'),
-util = require('util'),
-urlUtil = require("url"),
-events = require('events');
+    Q = require('q'),
+    util = require('util'),
+    urlUtil = require("url"),
+    events = require('events');
+
 var handlers = {};
 
-var WebsocketWrapper = function (service, path) {
-    if (service === undefined || path === undefined) {
-        throw new Error("all parameters is required")
-    }
-
+var WebsocketWrapper = function (service) {
     this.service = service
-    this.ws_path = path
 }
 util.inherits(WebsocketWrapper, events.EventEmitter);
 
@@ -33,7 +30,7 @@ C.deepMerge({
         var self = this;
 
         websocketUrl(self.service).then(function(url) {
-            var conn = new WebSocket(url+self.ws_path);
+            var conn = new WebSocket(url);
 
             conn.onopen = self._onopen.bind(self);
             conn.onclose = self._onclose.bind(self);
@@ -73,20 +70,21 @@ C.deepMerge({
 }, WebsocketWrapper.prototype)
 
 function websocketUrl(service) {
-    return C.getEndpoints().then(function(endpoints) {
+    return Q.spread([C.getEndpoints(), C.getAuthToken()], function(endpoints, token) {
         if (endpoints[service] === undefined) {
             throw new Error(Object.keys(endpoints)+ " is missing "+service)
         }
 
         var new_uri,
-        loc = urlUtil.parse(endpoints[service])
+            path = paths[service] || '/',
+            loc = urlUtil.parse(endpoints[service])
 
         if (loc.protocol === "https:") {
             new_uri = "wss:";
         } else {
             new_uri = "ws:";
         }
-        new_uri += "//" + loc.host
+        new_uri += "//" + loc.host + path + '?token=' + token
 
         return new_uri
     });
@@ -100,8 +98,7 @@ module.exports = {
     },
     get: function(service) {
         if (handlers[service] === undefined) {
-            var path = paths[service] || '/'
-            var h = handlers[service] = new WebsocketWrapper(service, path);
+            var h = handlers[service] = new WebsocketWrapper(service);
 
             // This is an async call
             h.connect();
