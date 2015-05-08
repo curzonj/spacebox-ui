@@ -92,13 +92,15 @@ function websocketUrl(service) {
     });
 }
 
-module.exports = {
-    get: function(service, path) {
-        if (handlers[service] === undefined) {
-            if (path === undefined) {
-                throw new Error("first call to get a websocket must give the path");
-            }
+var paths={}
 
+module.exports = {
+    registerPath: function(service, path) {
+        paths[service] = path
+    },
+    get: function(service) {
+        if (handlers[service] === undefined) {
+            var path = paths[service] || '/'
             var h = handlers[service] = new WebsocketWrapper(service, path);
 
             // This is an async call

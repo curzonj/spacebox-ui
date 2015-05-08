@@ -3,7 +3,7 @@
 # skip this for speed atm
 # npm install
 
-SPODB_URL=https://frozen-island-6216.herokuapp.com ./bin/gulp build
+AUTH_URL=https://spacebox-auth.herokuapp.com ./bin/gulp build
 
 (
         cd ../../curzonj.github.io

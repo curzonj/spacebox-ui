@@ -1,3 +1,2 @@
-require('./routing') 
-
-require('./controllers/main')
+require('./routing')
+require('./controllers/main');

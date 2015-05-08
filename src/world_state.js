@@ -9,8 +9,6 @@ function WorldState() {
 /*
  * THIS IS THE MESSAGE SCHEMA
 key: key,
-previous: oldRev,
-version: newRev,
 values: patch
 */
 
@@ -49,7 +47,6 @@ WorldState.prototype = {
             key: msg.key,
             values: msg.values,
             type: msg.values.type,
-            version: msg.version
         };
     },
     updateState: function(currentTick, timestamp, msg) {
@@ -63,17 +60,6 @@ WorldState.prototype = {
 
             throw "missingState";
         }
-
-        if (msg.previous != current.version) {
-            console.log({
-                type: "revisionError",
-                expected: msg.previous,
-                found: current.version,
-                key: msg.key
-            });
-        }
-
-        current.version = msg.version;
 
         for (var attrname in msg.values) {
             current.values[attrname] = msg.values[attrname];
@@ -116,8 +102,7 @@ WorldState.prototype = {
         // TODO messages that update things can come before the 
         // messages to create those things. deal with it
         // TODO this method needs to handle all timestamp
-        // and revision issues
-        if (msg.previous === 0 && worldState[msg.key] === undefined) {
+        if (worldState[msg.key] === undefined) {
             if (msg.values.tombstone !== true) {
                 this.initialState(currentTick, timestamp, msg);
 
