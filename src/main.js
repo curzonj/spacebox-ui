@@ -3,7 +3,7 @@
 var $ = require('jquery'),
     C = require('spacebox-common'),
     authenticate = require('./authentication'),
-    websockets = require('./websockets')
+    websockets = require('spacebox-common/src/websockets-wrapper.js')
 
 C.configure({
     AUTH_URL: process.env.AUTH_URL
