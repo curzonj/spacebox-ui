@@ -9,6 +9,9 @@ C.configure({
     AUTH_URL: process.env.AUTH_URL
 })
 
+authenticate.client_id = process.env.GOOGLE_CLIENT_ID
+authenticate.redirect_uri = process.env.GOOGLE_REDIRECT_URI
+
 authenticate()
 websockets.registerPath('3dsim', '/temporary')
 

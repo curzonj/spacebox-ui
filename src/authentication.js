@@ -5,10 +5,7 @@ var C = require('spacebox-common'),
     moment = require('moment'),
     qhttp = require('q-io/http')
 
-var redirect_uri = "http://localhost:3000/",
-    client_id = '267148687014-d0mpv7h0en79tv28iafgt7c5hd7pvakk.apps.googleusercontent.com'
-
-module.exports = function() {
+var fn = module.exports = function() {
     // TODO cache the token in a cookie and reuse it if it's 
     // still valid
     if(typeof(sessionStorage) === "undefined") {
@@ -31,6 +28,6 @@ module.exports = function() {
     
         C.configure({ credentials: 'google:'+sessionStorage.google_access_token })
     } else {
-        window.location.assign("https://accounts.google.com/o/oauth2/auth?scope=email%20profile&&redirect_uri="+encodeURIComponent(redirect_uri)+"&response_type=token&client_id="+client_id)
+        window.location.assign("https://accounts.google.com/o/oauth2/auth?scope=email%20profile&&redirect_uri="+encodeURIComponent(fn.redirect_uri)+"&response_type=token&client_id="+fn.client_id)
     }
 }
