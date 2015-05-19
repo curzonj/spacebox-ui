@@ -10,7 +10,7 @@ C.configure({
 })
 
 authenticate()
-websockets.registerPath('3dsim', '/arena')
+websockets.registerPath('3dsim', '/temporary')
 
 require('./asset_urls')
 
