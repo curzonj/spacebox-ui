@@ -9,9 +9,7 @@ var self = {
         var spo = worldState.get(key);
         var model_name = spo.values.model_name || "cube";
         var model_scale = parseInt(spo.values.model_scale || 1);
-        if (spo.values.type != 'spaceship') {
-            console.log(spo);
-        }
+        console.log(spo);
 
         models.load(model_name, model_scale, function(object3d) {
             // Reload it because it may be stale
