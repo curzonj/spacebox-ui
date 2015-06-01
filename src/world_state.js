@@ -99,20 +99,21 @@ WorldState.prototype = {
         this.notifyMutators(key, obj.values);
     },
     onStateChange: function(currentTick, timestamp, list) {
+        var self = this;
         list.forEach(function(msg) {
             // TODO messages that update things can come before the 
             // messages to create those things. deal with it
             // TODO this method needs to handle all timestamp
             if (worldState[msg.key] === undefined) {
                 if (msg.values.tombstone !== true) {
-                    this.initialState(currentTick, timestamp, msg);
+                    self.initialState(currentTick, timestamp, msg);
 
-                    this.notifyHandlers(msg.key, msg.values);
+                    self.notifyHandlers(msg.key, msg.values);
                 }
             } else {
-                this.notifyMutators(msg.key, msg.values);
+                self.notifyMutators(msg.key, msg.values);
 
-                this.updateState(currentTick, timestamp, msg);
+                self.updateState(currentTick, timestamp, msg);
             }
         })
     },

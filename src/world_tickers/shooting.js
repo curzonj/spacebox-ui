@@ -9,7 +9,7 @@ Math.radians = function(degrees) {
 };
 
 THREEx.LaserBeam.prototype.setTarget = function(position) {
-    if (position === -1) {
+    if (position === null) {
         this.object3d.traverse(function(o) {
             o.visible = false;
         });
@@ -32,7 +32,7 @@ window.laserList = lasers;
 
 worldState.registerMutator(['shooting'], function(key, values) {
     // The world ticker keeps track of the laser after it's created
-    if (values.shooting !== -1) {
+    if (values.shooting !== null) {
         var ship1 = worldState.get(key);
 
         if (ship1 && ship1.object3d && ship1.laser === undefined) {
@@ -60,8 +60,8 @@ worldState.registerTicker(function(tick) {
             return;
         }
 
-        if (ship1.values.tombstone || ship1.values.shooting === -1 || ship1.values.shooting === undefined) {
-            ship1.laser.setTarget(-1);
+        if (ship1.values.tombstone || ship1.values.shooting === null || ship1.values.shooting === undefined) {
+            ship1.laser.setTarget(null);
         } else {
             var ship2 = worldState.get(ship1.values.shooting);
 
@@ -70,7 +70,7 @@ worldState.registerTicker(function(tick) {
             if (ship2 && ship2.object3d && ship2.values.tombstone !== true) {
                 ship1.laser.setTarget(ship2.object3d.position);
             } else {
-                ship1.laser.setTarget(-1);
+                ship1.laser.setTarget(null);
             }
         }
     });
