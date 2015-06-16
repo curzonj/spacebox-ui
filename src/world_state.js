@@ -119,7 +119,7 @@ WorldState.prototype = {
     },
     tickInterval: 80,
     currentTick: function() {
-        var ms = new Date().getTime();
+        var ms = Date.now();
         var tickNumber = ms - (ms % this.tickInterval);
 
         return tickNumber;
